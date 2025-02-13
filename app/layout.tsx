@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import { FaHome } from "react-icons/fa";
+import { MdExplore } from "react-icons/md";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +30,39 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex min-h-screen">
+          {/* Navigation Sidebar */}
+          <nav className="w-64 bg-gradient-to-b from-blue-600 to-blue-800 p-6 text-white shadow-lg">
+            <div className="mb-8">
+              <h1 className="text-2xl font-bold">Learning Hub</h1>
+            </div>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  href="/"
+                  className="flex items-center p-3 rounded-lg transition-all duration-200 hover:bg-white/20 group"
+                >
+                  <FaHome className="w-5 h-5 mr-3 text-blue-200 group-hover:text-white" />
+                  <span className="font-medium">Home</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/explore"
+                  className="flex items-center p-3 rounded-lg transition-all duration-200 hover:bg-white/20 group"
+                >
+                  <MdExplore className="w-5 h-5 mr-3 text-blue-200 group-hover:text-white" />
+                  <span className="font-medium">Explore Courses</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          
+          {/* Main Content */}
+          <main className="flex-1 p-6 bg-gray-50">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );
